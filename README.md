@@ -34,7 +34,7 @@ Running SPICE with no arguments prints the following help message:
     
     See README file for additional information and input format details
 
-The input.json file should contain of an array of json objects, each representing a single caption and containing `image_id`, `test` and `refs` fields. See `example_input.json`
+The input.json file should contain of an array of json objects, each representing a single caption and containing `image_id`, `tests` and `refs` fields. See `example_input.json`
 
 It is recommended to provide a path to an empty directory in the `-cache` argument as it makes repeated evaluations much faster.
 

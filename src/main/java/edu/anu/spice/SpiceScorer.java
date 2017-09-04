@@ -83,6 +83,7 @@ public class SpiceScorer {
 		// Parse test and refs from input file
 		ArrayList<Object> image_ids = new ArrayList<Object>();
 		ArrayList<String> testCaptions = new ArrayList<String>();
+		ArrayList<Integer> testChunks = new ArrayList<Integer>();
 		ArrayList<String> refCaptions = new ArrayList<String>();
 		ArrayList<Integer> refChunks = new ArrayList<Integer>();
 		JSONParser json = new JSONParser();
@@ -92,7 +93,11 @@ public class SpiceScorer {
 			for (Object o : input) {
 			    JSONObject item = (JSONObject) o;
 			    image_ids.add(item.get("image_id"));
-			    testCaptions.add((String) item.get("test"));
+			    JSONArray tests = (JSONArray) item.get("tests");
+			    testChunks.add(tests.size());
+			    for (Object test : tests){
+			    	testCaptions.add((String) test);
+			    }
 			    JSONArray refs = (JSONArray) item.get("refs");
 			    refChunks.add(refs.size());
 			    for (Object ref : refs){
@@ -108,7 +113,7 @@ public class SpiceScorer {
 		System.err.println("Parsing reference captions");
 		List<SceneGraph> refSgs = parser.parseCaptions(refCaptions, refChunks);
 		System.err.println("Parsing test captions");		
-		List<SceneGraph> testSgs = parser.parseCaptions(testCaptions);
+		List<SceneGraph> testSgs = parser.parseCaptions(testCaptions, testChunks);
 		
 		this.stats = new SpiceStats(filters, args.detailed);
 		for (int i=0; i<testSgs.size(); ++i) {
