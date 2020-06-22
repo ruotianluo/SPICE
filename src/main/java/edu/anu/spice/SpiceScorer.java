@@ -136,6 +136,16 @@ public class SpiceScorer {
 			
 			outputWriter.write(prettyPrintedJson);			
 			outputWriter.close();
+
+			BufferedWriter outputWriter_ = new BufferedWriter(new FileWriter(args.outputPath.substring(0,args.outputPath.length()-4)+"graph"));
+			
+			for (int i=0; i<testSgs.size(); ++i) {
+				outputWriter_.write("#"+String.valueOf(image_ids.get(i))+'\n');
+				outputWriter_.write(refSgs.get(i).toReadableString()+'\n');
+				outputWriter_.write("$$$"+'\n');
+				outputWriter_.write(testSgs.get(i).toReadableString()+'\n');
+			}	
+			outputWriter_.close();
 		}
 		System.out.println("SPICE evaluation took: " + timer.stop());
 	}

@@ -248,6 +248,12 @@
 			<url>http://download.oracle.com/maven</url>
 			<layout>default</layout>
 		</repository>
+		<repository>
+			<id>mvnrepository</id>
+			<name>mvnrepository</name>
+			<url>https://mvnrepository.com/artifact</url>
+			<layout>default</layout>
+		</repository>
 	</repositories>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
